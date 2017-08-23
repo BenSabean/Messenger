@@ -4,7 +4,7 @@
 
 import socket
 from threading import Thread
-from SocketServer import ThreadingMixIn
+#from SocketServer import ThreadingMixIn
 
 class ListenerThread(Thread):
     
@@ -12,9 +12,9 @@ class ListenerThread(Thread):
         Thread.__init__(self)
     
     def run(self):
-        while not True:
+        while True:
             reply = s.recv(2048)
-            print "\nServer: " + reply + "\n:> "
+            print(reply)
 
 
 TCP_IP = '127.0.0.1'  # localhost address
@@ -34,7 +34,6 @@ while 1:
     if data == "self:close": break
     if not data: break
     s.send(data)  # echo
-
 
 for t in threads:
     t.join()
